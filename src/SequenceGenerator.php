@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Phonyland\ExampleGenerator;
+namespace Phonyland\SequenceGenerator;
 
-use Phonyland\GeneratorManager\Generator;
+use Phonyland\Framework\Generator;
 
 class SequenceGenerator extends Generator
 {
-    public function text(): string
+    public function digit(string $sequence): string
     {
-        return 'example-text-'.random_int(1, 9999);
+        return preg_replace_callback('/#/', fn () => $this->phony->number->digit(), $sequence);
     }
 }

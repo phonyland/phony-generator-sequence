@@ -6,7 +6,7 @@ namespace Phonyland\ExampleGenerator;
 
 use Phonyland\GeneratorManager\Generator;
 
-class ExampleGenerator extends Generator
+class SequenceGenerator extends Generator
 {
     public function text(): string
     {

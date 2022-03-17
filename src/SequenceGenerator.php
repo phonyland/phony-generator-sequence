@@ -10,7 +10,7 @@ class SequenceGenerator extends Generator
 {
     public function digit(string $sequence): string
     /**
-     * Replaces every hash sign ('#') with a with-zero random digit.
+     * Replaces every '#' sign with a with-zero random digit.
      *
      * @param  string  $sequence
      *
@@ -26,7 +26,7 @@ class SequenceGenerator extends Generator
     }
 
     /**
-     * Replaces every percentage sign ('%') with a non-zero random digit.
+     * Replaces every '%' sign with a non-zero random digit.
      *
      * @param  string  $sequence
      *
@@ -42,8 +42,8 @@ class SequenceGenerator extends Generator
     }
 
     /**
-     * Replaces every hash sign ('#') with a with-zero random digit and
-     * percentage sign ('%') with a non-zero random digit.
+     * Replaces every '#' sign with a with-zero random digit
+     * and '%' sign with a non-zero random digit.
      *
      * @param  string  $sequence
      *

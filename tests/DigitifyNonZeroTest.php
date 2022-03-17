@@ -1,13 +1,13 @@
 <?php
 
-it('can replace percentage signs into non-zero random digits')
+it('can replace % signs into non-zero random digits')
     ->expect(🙃()->sequence->digitifyNonZero('%%%'))
     ->toMatch('/^[1-9]{0,3}$/');
 
-it('can replace percentage signs into non-zero random digits with other strings')
+it('can replace % signs into non-zero random digits with other strings')
     ->expect(🙃()->sequence->digitifyNonZero('test %%%%%% test'))
     ->toMatch('/^test [1-9]{0,6} test$/');
 
-it('can replace percentage signs into non-zero random digits with other strings without spaces')
+it('can replace % signs into non-zero random digits with other strings without spaces')
     ->expect(🙃()->sequence->digitifyNonZero('test%%%%%%test'))
     ->toMatch('/^test[1-9]{0,6}test$/');

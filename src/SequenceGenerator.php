@@ -10,7 +10,7 @@ class SequenceGenerator extends Generator
 {
     public function digit(string $sequence): string
     /**
-     * Replaces every hash sign ('#') with a random digit.
+     * Replaces every hash sign ('#') with a with-zero random digit.
      *
      * @param  string  $sequence
      *

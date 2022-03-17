@@ -77,6 +77,28 @@ class SequenceGenerator extends Generator
             subject: $sequence
         );
     }
+
+    /**
+     * Replaces every '@' sign with an lowercase letter.
+     *
+     * @param  string  $sequence
+     * @param  array   $letters
+     *
+     * @return string
+     */
+    public function letterifyLowercase(
+        string $sequence,
+        array $letters = [
+            'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u',
+            'v', 'w', 'x', 'y', 'z',
+        ]
+    ): string {
+        return preg_replace_callback(
+            pattern: '/\@/',
+            callback: fn() => $letters[$this->phony->number->integerBetween(0, count($letters) - 1)],
+            subject: $sequence
+        );
+    }
     {
         return preg_replace_callback('/#/', fn () => $this->phony->number->digit(), $sequence);
     }

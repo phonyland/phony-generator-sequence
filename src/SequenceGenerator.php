@@ -16,6 +16,14 @@ class SequenceGenerator extends Generator
      *
      * @return string
      */
+    public function digitify(string $sequence): string
+    {
+        return preg_replace_callback(
+            pattern: '/\#/',
+            callback: fn() => $this->phony->number->digit(),
+            subject: $sequence
+        );
+    }
     public function numerify(string $sequence): string
     {
         $randomDigitFn = fn () => $this->phony->number->digit();

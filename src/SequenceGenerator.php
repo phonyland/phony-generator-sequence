@@ -24,6 +24,23 @@ class SequenceGenerator extends Generator
             subject: $sequence
         );
     }
+
+    /**
+     * Replaces every percentage sign ('%') with a non-zero random digit.
+     *
+     * @param  string  $sequence
+     *
+     * @return string
+     */
+    public function digitifyNonZero(string $sequence): string
+    {
+        return preg_replace_callback(
+            pattern: '/%/',
+            callback: fn() => $this->phony->number->digitNonZero(),
+            subject: $sequence
+        );
+    }
+
     public function numerify(string $sequence): string
     {
         $randomDigitFn = fn () => $this->phony->number->digit();

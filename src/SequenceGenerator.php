@@ -56,9 +56,24 @@ class SequenceGenerator extends Generator
             (fn($sequence) => $this->digitifyNonZero($sequence));
     }
 
+    /**
+     * Replaces every '!' sign with an uppercase letter.
+     *
+     * @param  string  $sequence
+     * @param  array   $letters
+     *
+     * @return string
+     */
+    public function letterifyUppercase(
+        string $sequence,
+        array $letters = [
+            'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U',
+            'V', 'W', 'X', 'Y', 'Z',
+        ]
+    ): string {
         return preg_replace_callback(
-            pattern: '/#/',
-            callback: $randomDigitFn,
+            pattern: '/\!/',
+            callback: fn() => $letters[$this->phony->number->integerBetween(0, count($letters) - 1)],
             subject: $sequence
         );
     }

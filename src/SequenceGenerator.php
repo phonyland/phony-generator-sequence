@@ -41,9 +41,20 @@ class SequenceGenerator extends Generator
         );
     }
 
+    /**
+     * Replaces every hash sign ('#') with a with-zero random digit and
+     * percentage sign ('%') with a non-zero random digit.
+     *
+     * @param  string  $sequence
+     *
+     * @return string
+     */
     public function numerify(string $sequence): string
     {
-        $randomDigitFn = fn () => $this->phony->number->digit();
+        return (string) Pipe::new($sequence)
+            (fn($sequence) => $this->digitify($sequence))
+            (fn($sequence) => $this->digitifyNonZero($sequence));
+    }
 
         return preg_replace_callback(
             pattern: '/#/',

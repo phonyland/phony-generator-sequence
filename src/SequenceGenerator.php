@@ -104,9 +104,10 @@ class SequenceGenerator extends Generator
     }
 
     /**
-     * Replaces every '@' sign with a lowercase letter,
-     * '!' sign with an uppercase letter and
-     * '?' with uppercase or lowercase letter.
+     * Replaces every
+     * '@' sign with a lowercase letter,
+     * '!' sign with an uppercase letter,
+     * '?' with an uppercase or lowercase letter.
      *
      * @param  string      $sequence
      * @param  array|null  $lettersUppercase
@@ -120,6 +121,22 @@ class SequenceGenerator extends Generator
             (fn($sequence) => preg_replace_callback('/\?/', fn() => $this->phony->number->boolean() ? '!' : '@', $sequence))
             (fn($sequence) => $this->letterifyUppercase($sequence, $lettersUppercase))
             (fn($sequence) => $this->letterifyLowercase($sequence, $lettersLowercase));
+    }
+
+    /**
+     * Replaces every '^' sign with an uppercase hex letter.
+     *
+     * @param  string  $sequence
+     *
+     * @return string
+     */
+    public function hexifyUppercase(string $sequence): string
+    {
+        return preg_replace_callback(
+            pattern: '/\^/',
+            callback: fn() => strtoupper(dechex($this->phony->number->digit(16))),
+            subject: $sequence
+        );
     }
 
     /**
@@ -139,19 +156,21 @@ class SequenceGenerator extends Generator
     }
 
     /**
-     * Replaces every '^' sign with an uppercase hex letter.
+     * Replaces every
+     * '^' sign with an uppercase hex letter,
+     * '_' sign with a lowercase hex letter,
+     * '.' with an uppercase or lowercase hex letter.
      *
      * @param  string  $sequence
      *
      * @return string
      */
-    public function hexifyUppercase(string $sequence): string
+    public function hexify(string $sequence): string
     {
-        return preg_replace_callback(
-            pattern: '/\^/',
-            callback: fn() => strtoupper(dechex($this->phony->number->digit(16))),
-            subject: $sequence
-        );
+        return (string) Pipe::new($sequence)
+            (fn($sequence) => preg_replace_callback('/\./', fn() => $this->phony->number->boolean() ? '_' : '^', $sequence))
+            (fn($sequence) => $this->hexifyUppercase($sequence))
+            (fn($sequence) => $this->hexifyLowercase($sequence));
     }
 
     // sequencify

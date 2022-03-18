@@ -138,6 +138,22 @@ class SequenceGenerator extends Generator
         );
     }
 
+    /**
+     * Replaces every '^' sign with an uppercase hex letter.
+     *
+     * @param  string  $sequence
+     *
+     * @return string
+     */
+    public function hexifyUppercase(string $sequence): string
+    {
+        return preg_replace_callback(
+            pattern: '/\^/',
+            callback: fn() => strtoupper(dechex($this->phony->number->digit(16))),
+            subject: $sequence
+        );
+    }
+
     // sequencify
     // alphanumerify
 }

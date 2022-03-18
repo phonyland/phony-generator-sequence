@@ -8,7 +8,6 @@ use Phonyland\Framework\Generator;
 
 class SequenceGenerator extends Generator
 {
-    public function digit(string $sequence): string
     /**
      * Replaces every '#' sign with a with-zero random digit.
      *

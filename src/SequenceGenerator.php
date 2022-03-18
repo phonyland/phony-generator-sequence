@@ -58,8 +58,8 @@ class SequenceGenerator extends Generator
     /**
      * Replaces every '!' sign with an uppercase letter.
      *
-     * @param  string  $sequence
-     * @param  array   $letters
+     * @param  string      $sequence
+     * @param  array|null  $letters
      *
      * @return string
      */
@@ -80,10 +80,10 @@ class SequenceGenerator extends Generator
     }
 
     /**
-     * Replaces every '@' sign with an lowercase letter.
+     * Replaces every '@' sign with a lowercase letter.
      *
-     * @param  string  $sequence
-     * @param  array   $letters
+     * @param  string      $sequence
+     * @param  array|null  $letters
      *
      * @return string
      */
@@ -104,8 +104,8 @@ class SequenceGenerator extends Generator
     }
 
     /**
-     * Replaces every '@' sign with an lowercase letter,
-     * '!' sign with a uppercase letter and
+     * Replaces every '@' sign with a lowercase letter,
+     * '!' sign with an uppercase letter and
      * '?' with uppercase or lowercase letter.
      *
      * @param  string      $sequence
@@ -121,7 +121,23 @@ class SequenceGenerator extends Generator
             (fn($sequence) => $this->letterifyUppercase($sequence, $lettersUppercase))
             (fn($sequence) => $this->letterifyLowercase($sequence, $lettersLowercase));
     }
+
+    /**
+     * Replaces every '_' sign with a lowercase hex letter.
+     *
+     * @param  string  $sequence
+     *
+     * @return string
+     */
+    public function hexifyLowercase(string $sequence): string
     {
-        return preg_replace_callback('/#/', fn () => $this->phony->number->digit(), $sequence);
+        return preg_replace_callback(
+            pattern: '/\_/',
+            callback: fn() => dechex($this->phony->number->digit(16)),
+            subject: $sequence
+        );
     }
+
+    // sequencify
+    // alphanumerify
 }

@@ -184,4 +184,12 @@ class SequenceGenerator extends Generator
 
     // sequencify
     // alphanumerify
+    public function replaceWithRandomSign(string $signToReplace, string $sign1, string $sign2, string $sequence): string
+    {
+        return preg_replace_callback(
+            pattern: '/\\' . $signToReplace . '/',
+            callback: fn() => $this->phony->number->boolean() ? $sign1 : $sign2,
+            subject: $sequence,
+        );
+    }
 }

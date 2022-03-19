@@ -8,6 +8,14 @@ use Phonyland\Framework\Generator;
 
 class SequenceGenerator extends Generator
 {
+    public const NON_ZERO_DIGIT_SIGN = '#';
+    public const WITH_ZERO_DIGIT_SIGN = '%';
+    public const ASCII_LETTER_UPPERCASE_SIGN = '!';
+    public const ASCII_LETTER_LOWERCASE_SIGN = '@';
+    public const ASCII_LETTER_SIGN = '?';
+    public const HEX_LETTER_UPPERCASE_SIGN = '^';
+    public const HEX_LETTER_SIGN = '.';
+
     /**
      * Replaces every '#' sign with a with-zero random digit.
      *
@@ -18,7 +26,7 @@ class SequenceGenerator extends Generator
     public function digitify(string $sequence): string
     {
         return preg_replace_callback(
-            pattern: '/\#/',
+            pattern: '/\\' . self::NON_ZERO_DIGIT_SIGN . '/',
             callback: fn() => $this->phony->number->digit(),
             subject: $sequence
         );
@@ -34,7 +42,7 @@ class SequenceGenerator extends Generator
     public function digitifyNonZero(string $sequence): string
     {
         return preg_replace_callback(
-            pattern: '/%/',
+            pattern: '/\\' . self::WITH_ZERO_DIGIT_SIGN . '/',
             callback: fn() => $this->phony->number->digitNonZero(),
             subject: $sequence
         );
@@ -73,7 +81,7 @@ class SequenceGenerator extends Generator
             ];
 
         return preg_replace_callback(
-            pattern: '/\!/',
+            pattern: '/\\' . self::ASCII_LETTER_UPPERCASE_SIGN . '/',
             callback: fn() => $letters[$this->phony->number->integerBetween(0, count($letters) - 1)],
             subject: $sequence
         );
@@ -97,7 +105,7 @@ class SequenceGenerator extends Generator
             ];
 
         return preg_replace_callback(
-            pattern: '/\@/',
+            pattern: '/\\' . self::ASCII_LETTER_LOWERCASE_SIGN . '/',
             callback: fn() => $letters[$this->phony->number->integerBetween(0, count($letters) - 1)],
             subject: $sequence
         );
@@ -133,7 +141,7 @@ class SequenceGenerator extends Generator
     public function hexifyUppercase(string $sequence): string
     {
         return preg_replace_callback(
-            pattern: '/\^/',
+            pattern: '/\\' . self::HEX_LETTER_UPPERCASE_SIGN . '/',
             callback: fn() => strtoupper(dechex($this->phony->number->digit(16))),
             subject: $sequence
         );

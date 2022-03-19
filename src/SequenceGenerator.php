@@ -124,10 +124,13 @@ class SequenceGenerator extends Generator
      *
      * @return string
      */
-    public function letterify(string $sequence, ?array $lettersUppercase = null, ?array $lettersLowercase = null): string
-    {
+    public function letterify(
+        string $sequence,
+        ?array $lettersUppercase = null,
+        ?array $lettersLowercase = null
+    ): string {
         return (string) Pipe::new($sequence)
-            (fn($sequence) => preg_replace_callback('/\?/', fn() => $this->phony->number->boolean() ? '!' : '@', $sequence))
+            (fn($sequence) => $this->replaceWithRandomSign('?', '!', '@', $sequence))
             (fn($sequence) => $this->letterifyUppercase($sequence, $lettersUppercase))
             (fn($sequence) => $this->letterifyLowercase($sequence, $lettersLowercase));
     }
@@ -177,7 +180,7 @@ class SequenceGenerator extends Generator
     public function hexify(string $sequence): string
     {
         return (string) Pipe::new($sequence)
-            (fn($sequence) => preg_replace_callback('/\./', fn() => $this->phony->number->boolean() ? '_' : '^', $sequence))
+            (fn($sequence) => $this->replaceWithRandomSign('.', '_', '^', $sequence))
             (fn($sequence) => $this->hexifyUppercase($sequence))
             (fn($sequence) => $this->hexifyLowercase($sequence));
     }

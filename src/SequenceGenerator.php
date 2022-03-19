@@ -49,8 +49,9 @@ class SequenceGenerator extends Generator
     }
 
     /**
-     * Replaces every '#' sign with a with-zero random digit
-     * and '%' sign with a non-zero random digit.
+     * Replaces every
+     * '#' sign with a with-zero random digit,
+     * '%' sign with a non-zero random digit.
      *
      * @param  string  $sequence
      *
@@ -113,9 +114,9 @@ class SequenceGenerator extends Generator
 
     /**
      * Replaces every
+     * '?' with an uppercase or lowercase letter.
      * '@' sign with a lowercase letter,
      * '!' sign with an uppercase letter,
-     * '?' with an uppercase or lowercase letter.
      *
      * @param  string      $sequence
      * @param  array|null  $lettersUppercase

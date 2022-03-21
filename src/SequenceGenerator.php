@@ -192,6 +192,51 @@ class SequenceGenerator extends Generator
             (fn($sequence) => $this->hexifyLowercase($sequence));
     }
 
+    /**
+     * Replaces every
+     *
+     * '*' sign with a with-zero random digit or a letter,
+     * '$' sign with a with-zero random digit or a lowercase letter,
+     * '+' sign with a with-zero random digit or an uppercase letter,
+     *
+     * '&' sign with a non-zero random digit or a letter,
+     * ')' sign with a non-zero random digit or a lowercase letter,
+     * '(' sign with a non-zero random digit or an uppercase letter,
+     *
+     * '.' with an uppercase or lowercase hex letter.
+     * '_' sign with a lowercase hex letter.
+     * '^' sign with an uppercase hex letter.
+     *
+     * '?' with a letter.
+     * '@' sign with a lowercase letter,
+     * '!' sign with an uppercase letter,
+     *
+     * '#' sign with a with-zero random digit,
+     * '%' sign with a non-zero random digit.
+     *
+     * @param  string      $sequence
+     * @param  array|null  $lettersUppercase
+     * @param  array|null  $lettersLowercase
+     *
+     * @return string
+     */
+    public function alphanumerify(
+        string $sequence,
+        ?array $lettersUppercase = null,
+        ?array $lettersLowercase = null
+    ): string {
+        return (string) Pipe::new($sequence)
+            (fn($sequence) => $this->replaceWithRandomSign(self::WITH_ZERO_DIGIT_OR_LETTER_SIGN, self::WITH_ZERO_DIGIT_SIGN, self::ASCII_LETTER_SIGN, $sequence))
+            (fn($sequence) => $this->replaceWithRandomSign(self::WITH_ZERO_DIGIT_OR_LOWERCASE_LETTER_SIGN, self::WITH_ZERO_DIGIT_SIGN, self::ASCII_LETTER_LOWERCASE_SIGN, $sequence))
+            (fn($sequence) => $this->replaceWithRandomSign(self::WITH_ZERO_DIGIT_OR_UPPERCASE_LETTER_SIGN, self::WITH_ZERO_DIGIT_SIGN, self::ASCII_LETTER_UPPERCASE_SIGN, $sequence))
+            (fn($sequence) => $this->replaceWithRandomSign(self::NON_ZERO_DIGIT_OR_LETTER_SIGN, self::NON_ZERO_DIGIT_SIGN, self::ASCII_LETTER_SIGN, $sequence))
+            (fn($sequence) => $this->replaceWithRandomSign(self::NON_ZERO_DIGIT_OR_LOWERCASE_LETTER_SIGN, self::NON_ZERO_DIGIT_SIGN, self::ASCII_LETTER_LOWERCASE_SIGN, $sequence))
+            (fn($sequence) => $this->replaceWithRandomSign(self::NON_ZERO_DIGIT_OR_UPPERCASE_LETTER_SIGN, self::NON_ZERO_DIGIT_SIGN, self::ASCII_LETTER_UPPERCASE_SIGN, $sequence))
+            (fn($sequence) => $this->hexify($sequence))
+            (fn($sequence) => $this->letterify($sequence, $lettersUppercase, $lettersLowercase))
+            (fn($sequence) => $this->numerify($sequence));
+    }
+
     public function replaceWithRandomSign(string $signToReplace, string $sign1, string $sign2, string $sequence): string
     {
         return preg_replace_callback(

@@ -14,7 +14,14 @@ class SequenceGenerator extends Generator
     public const ASCII_LETTER_LOWERCASE_SIGN = '@';
     public const ASCII_LETTER_SIGN = '?';
     public const HEX_LETTER_UPPERCASE_SIGN = '^';
+    public const HEX_LETTER_LOWERCASE_SIGN = '_';
     public const HEX_LETTER_SIGN = '.';
+    public const NON_ZERO_DIGIT_OR_UPPERCASE_LETTER_SIGN = '(';
+    public const NON_ZERO_DIGIT_OR_LOWERCASE_LETTER_SIGN = ')';
+    public const NON_ZERO_DIGIT_OR_LETTER_SIGN = '&';
+    public const WITH_ZERO_DIGIT_OR_UPPERCASE_LETTER_SIGN = '+';
+    public const WITH_ZERO_DIGIT_OR_LOWERCASE_LETTER_SIGN = '$';
+    public const WITH_ZERO_DIGIT_OR_LETTER_SIGN = '*';
 
     /**
      * Replaces every '#' sign with a with-zero random digit.
@@ -114,9 +121,9 @@ class SequenceGenerator extends Generator
 
     /**
      * Replaces every
-     * '?' with an uppercase or lowercase letter.
+     * '?' with a letter,
      * '@' sign with a lowercase letter,
-     * '!' sign with an uppercase letter,
+     * '!' sign with an uppercase letter.
      *
      * @param  string      $sequence
      * @param  array|null  $lettersUppercase
@@ -130,7 +137,7 @@ class SequenceGenerator extends Generator
         ?array $lettersLowercase = null
     ): string {
         return (string) Pipe::new($sequence)
-            (fn($sequence) => $this->replaceWithRandomSign('?', '!', '@', $sequence))
+            (fn($sequence) => $this->replaceWithRandomSign(self::ASCII_LETTER_SIGN, self::ASCII_LETTER_UPPERCASE_SIGN, self::ASCII_LETTER_LOWERCASE_SIGN, $sequence))
             (fn($sequence) => $this->letterifyUppercase($sequence, $lettersUppercase))
             (fn($sequence) => $this->letterifyLowercase($sequence, $lettersLowercase));
     }
@@ -161,7 +168,7 @@ class SequenceGenerator extends Generator
     public function hexifyLowercase(string $sequence): string
     {
         return preg_replace_callback(
-            pattern: '/\_/',
+            pattern: '/\\' . self::HEX_LETTER_LOWERCASE_SIGN . '/',
             callback: fn() => dechex($this->phony->number->digit(16)),
             subject: $sequence
         );
@@ -180,13 +187,11 @@ class SequenceGenerator extends Generator
     public function hexify(string $sequence): string
     {
         return (string) Pipe::new($sequence)
-            (fn($sequence) => $this->replaceWithRandomSign('.', '_', '^', $sequence))
+            (fn($sequence) => $this->replaceWithRandomSign(self::HEX_LETTER_SIGN, self::HEX_LETTER_UPPERCASE_SIGN, self::HEX_LETTER_LOWERCASE_SIGN, $sequence))
             (fn($sequence) => $this->hexifyUppercase($sequence))
             (fn($sequence) => $this->hexifyLowercase($sequence));
     }
 
-    // sequencify
-    // alphanumerify
     public function replaceWithRandomSign(string $signToReplace, string $sign1, string $sign2, string $sequence): string
     {
         return preg_replace_callback(

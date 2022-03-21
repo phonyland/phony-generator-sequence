@@ -24,22 +24,6 @@ class SequenceGenerator extends Generator
     public const WITH_ZERO_DIGIT_OR_LETTER_SIGN = '*';
 
     /**
-     * Replaces every '#' sign with a with-zero random digit.
-     *
-     * @param  string  $sequence
-     *
-     * @return string
-     */
-    public function digitify(string $sequence): string
-    {
-        return preg_replace_callback(
-            pattern: '/\\' . self::NON_ZERO_DIGIT_SIGN . '/',
-            callback: fn() => $this->phony->number->digit(),
-            subject: $sequence
-        );
-    }
-
-    /**
      * Replaces every '%' sign with a non-zero random digit.
      *
      * @param  string  $sequence
@@ -49,8 +33,24 @@ class SequenceGenerator extends Generator
     public function digitifyNonZero(string $sequence): string
     {
         return preg_replace_callback(
-            pattern: '/\\' . self::WITH_ZERO_DIGIT_SIGN . '/',
+            pattern: '/\\' . self::NON_ZERO_DIGIT_SIGN . '/',
             callback: fn() => $this->phony->number->digitNonZero(),
+            subject: $sequence
+        );
+    }
+
+    /**
+     * Replaces every '#' sign with a with-zero random digit.
+     *
+     * @param  string  $sequence
+     *
+     * @return string
+     */
+    public function digitify(string $sequence): string
+    {
+        return preg_replace_callback(
+            pattern: '/\\' . self::WITH_ZERO_DIGIT_SIGN . '/',
+            callback: fn() => $this->phony->number->digit(),
             subject: $sequence
         );
     }

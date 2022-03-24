@@ -86,6 +86,9 @@ dataset('digitify', [
     ...WITH_ZERO_DIGIT_SIGN,
 ]);
 
+dataset('letterifyUppercase', [
+    ...ASCII_LETTER_UPPERCASE_SIGN,
+]);
 
 dataset('letterifyLowercase', [
     ...ASCII_LETTER_LOWERCASE_SIGN,

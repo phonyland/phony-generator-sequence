@@ -89,6 +89,10 @@ dataset('digitify', [
 dataset('hexifyUppercase', [
     ...HEX_LETTER_UPPERCASE_SIGN,
 ]);
+
+dataset('hexifyLowercase', [
+    ...HEX_LETTER_LOWERCASE_SIGN,
+]);
 dataset('signs', [
     ...NON_ZERO_DIGIT_SIGN,
     ...WITH_ZERO_DIGIT_SIGN,

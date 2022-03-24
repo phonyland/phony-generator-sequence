@@ -78,7 +78,7 @@ const WITH_ZERO_DIGIT_OR_LETTER_SIGN = [
     ],
 ];
 
-dataset('digitifyNonZero', [
+dataset('numerifyNonZero', [
     ...NON_ZERO_DIGIT_SIGN
 ]);
 
@@ -114,7 +114,7 @@ dataset('hexify', [
     ...HEX_LETTER_SIGN,
 ]);
 
-dataset('signs', [
+dataset('alphanumerify', [
     ...NON_ZERO_DIGIT_SIGN,
     ...WITH_ZERO_DIGIT_SIGN,
     ...ASCII_LETTER_UPPERCASE_SIGN,

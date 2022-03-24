@@ -30,7 +30,7 @@ class SequenceGenerator extends Generator
      *
      * @return string
      */
-    public function digitifyNonZero(string $sequence): string
+    public function numerifyNonZero(string $sequence): string
     {
         return preg_replace_callback(
             pattern: '/\\' . self::NON_ZERO_DIGIT_SIGN . '/',

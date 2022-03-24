@@ -218,6 +218,7 @@ class SequenceGenerator extends Generator
             (fn($sequence) => $this->replaceWithRandomSign(self::NON_ZERO_DIGIT_OR_UPPERCASE_LETTER_SIGN, self::NON_ZERO_DIGIT_SIGN, self::ASCII_LETTER_UPPERCASE_SIGN, $sequence))
             (fn($sequence) => $this->hexify($sequence))
             (fn($sequence) => $this->letterify($sequence, $lettersUppercase, $lettersLowercase))
+            (fn($sequence) => $this->numerifyNonZero($sequence))
             (fn($sequence) => $this->numerify($sequence));
     }
 

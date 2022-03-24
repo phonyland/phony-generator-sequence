@@ -93,6 +93,13 @@ dataset('letterifyUppercase', [
 dataset('letterifyLowercase', [
     ...ASCII_LETTER_LOWERCASE_SIGN,
 ]);
+
+dataset('letterify', [
+    ...ASCII_LETTER_UPPERCASE_SIGN,
+    ...ASCII_LETTER_LOWERCASE_SIGN,
+    ...ASCII_LETTER_SIGN,
+]);
+
 dataset('hexifyUppercase', [
     ...HEX_LETTER_UPPERCASE_SIGN,
 ]);

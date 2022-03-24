@@ -1,13 +1,19 @@
 <?php
 
-it('can replace ! signs, @ signs and ? signs into uppercase, lowercase and uppercase or lowercase letters')
-    ->expect(🙃()->sequence->letterify('!!!!!!!!!!!!!!!!!!!!!!!!!@@@@@@@@@@@@@@@@@@@@@@@@@?????????????????????????'))
-    ->toMatch('/^[A-Z]{25}[a-z]{25}[a-zA-z]{25}$/');
+it('can replace ! signs, @ signs and ? signs into uppercase, lowercase and uppercase or lowercase letters', function (string $expression, string $sign) {
+    $sequence = str_repeat($sign, 100);
+    expect(🙃()->sequence->letterify($sequence))
+        ->toMatch("/^$expression\$/");
+})->with('letterify');
 
-it('can replace ! signs, @ signs and ? signs into uppercase, lowercase and uppercase or lowercase letters with other strings')
-    ->expect(🙃()->sequence->letterify('test !!!!!!!!!!!!!!!!!!!!!!!!!@@@@@@@@@@@@@@@@@@@@@@@@@????????????????????????? test'))
-    ->toMatch('/^test [A-Z]{25}[a-z]{25}[a-zA-z]{25} test$/');
+it('can replace ! signs, @ signs and ? signs into uppercase, lowercase and uppercase or lowercase letters with other strings', function (string $expression, string $sign) {
+    $sequence = 'test '.str_repeat($sign, 100).' test';
+    expect(🙃()->sequence->letterify($sequence))
+        ->toMatch("/^test $expression test\$/");
+})->with('letterify');
 
-it('can replace ! signs, @ signs and ? signs into uppercase, lowercase and uppercase or lowercase letters with other strings without spaces')
-    ->expect(🙃()->sequence->letterify('test!!!!!!!!!!!!!!!!!!!!!!!!!@@@@@@@@@@@@@@@@@@@@@@@@@?????????????????????????test'))
-    ->toMatch('/^test[A-Z]{25}[a-z]{25}[a-zA-z]{25}test$/');
+it('can replace ! signs, @ signs and ? signs into uppercase, lowercase and uppercase or lowercase letters with other strings without spaces', function (string $expression, string $sign) {
+    $sequence = 'test'.str_repeat($sign, 100).'test';
+    expect(🙃()->sequence->letterify($sequence))
+        ->toMatch("/^test{$expression}test\$/");
+})->with('letterify');

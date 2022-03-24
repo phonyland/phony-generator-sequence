@@ -1,13 +1,19 @@
 <?php
 
-it('can replace ^ signs, _ signs and . signs into uppercase, lowercase and uppercase or lowercase letters')
-    ->expect(🙃()->sequence->hexify('^^^^^^^^^^^^^^^^^^^^^^^^^_________________________.........................'))
-    ->toMatch('/^[0-9A-Z]{25}[0-9a-z]{25}[0-9a-zA-z]{25}$/');
+it('can replace ^ signs, _ signs and . signs into uppercase, lowercase and uppercase or lowercase letters', function (string $expression, string $sign) {
+    $sequence = str_repeat($sign, 100);
+    expect(🙃()->sequence->hexify($sequence))
+        ->toMatch("/^$expression\$/");
+})->with('hexify');
 
-it('can replace ^ signs, _ signs and . signs into uppercase, lowercase and uppercase or lowercase letters with other strings')
-    ->expect(🙃()->sequence->hexify('test ^^^^^^^^^^^^^^^^^^^^^^^^^_________________________......................... test'))
-    ->toMatch('/^test [0-9A-Z]{25}[0-9a-z]{25}[0-9a-zA-z]{25} test$/');
+it('can replace ^ signs, _ signs and . signs into uppercase, lowercase and uppercase or lowercase letters with other strings', function (string $expression, string $sign) {
+    $sequence = 'test '.str_repeat($sign, 100).' test';
+    expect(🙃()->sequence->hexify($sequence))
+        ->toMatch("/^test $expression test\$/");
+})->with('hexify');
 
-it('can replace ^ signs, _ signs and . signs into uppercase, lowercase and uppercase or lowercase letters with other strings without spaces')
-    ->expect(🙃()->sequence->hexify('test^^^^^^^^^^^^^^^^^^^^^^^^^_________________________.........................test'))
-    ->toMatch('/^test[0-9A-Z]{25}[0-9a-z]{25}[0-9a-zA-z]{25}test$/');
+it('can replace ^ signs, _ signs and . signs into uppercase, lowercase and uppercase or lowercase letters with other strings without spaces', function (string $expression, string $sign) {
+    $sequence = 'test'.str_repeat($sign, 100).'test';
+    expect(🙃()->sequence->hexify($sequence))
+        ->toMatch("/^test{$expression}test\$/");
+})->with('hexify');

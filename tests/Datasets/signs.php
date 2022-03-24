@@ -93,6 +93,13 @@ dataset('hexifyUppercase', [
 dataset('hexifyLowercase', [
     ...HEX_LETTER_LOWERCASE_SIGN,
 ]);
+
+dataset('hexify', [
+    ...HEX_LETTER_LOWERCASE_SIGN,
+    ...HEX_LETTER_UPPERCASE_SIGN,
+    ...HEX_LETTER_SIGN,
+]);
+
 dataset('signs', [
     ...NON_ZERO_DIGIT_SIGN,
     ...WITH_ZERO_DIGIT_SIGN,

@@ -82,6 +82,9 @@ dataset('digitifyNonZero', [
     ...NON_ZERO_DIGIT_SIGN
 ]);
 
+dataset('digitify', [
+    ...WITH_ZERO_DIGIT_SIGN,
+]);
 dataset('signs', [
     ...NON_ZERO_DIGIT_SIGN,
     ...WITH_ZERO_DIGIT_SIGN,

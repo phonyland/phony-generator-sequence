@@ -221,7 +221,7 @@ class SequenceGenerator extends Generator
             (fn($sequence) => $this->numerify($sequence));
     }
 
-    public function replaceWithRandomSign(string $signToReplace, string $sign1, string $sign2, string $sequence): string
+    private function replaceWithRandomSign(string $signToReplace, string $sign1, string $sign2, string $sequence): string
     {
         return preg_replace_callback(
             pattern: '/\\' . $signToReplace . '/',

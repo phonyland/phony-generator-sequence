@@ -1,13 +1,19 @@
 <?php
 
-it('can replace _ signs into lowercase hex letters')
-    ->expect(🙃()->sequence->hexifyLowercase('__________________________________________________'))
-    ->toMatch('/^[0-9a-f]{50}$/');
+it('can replace @ signs into with random lowercase letters', function (string $expression, string $sign) {
+    $sequence = str_repeat($sign, 100);
+    expect(🙃()->sequence->hexifyLowercase($sequence))
+        ->toMatch("/^$expression\$/");
+})->with('hexifyLowercase');
 
-it('can replace _ signs into lowercase hex letters with other strings')
-    ->expect(🙃()->sequence->hexifyLowercase('test __________________________________________________ test'))
-    ->toMatch('/^test [0-9a-f]{50} test$/');
+it('can replace @ signs into with random lowercase letters with other strings', function (string $expression, string $sign) {
+    $sequence = 'test '.str_repeat($sign, 100).' test';
+    expect(🙃()->sequence->hexifyLowercase($sequence))
+        ->toMatch("/^test $expression test\$/");
+})->with('hexifyLowercase');
 
-it('can replace _ signs into lowercase hex letters with other strings without spaces')
-    ->expect(🙃()->sequence->hexifyLowercase('test__________________________________________________test'))
-    ->toMatch('/^test[0-9a-f]{50}test$/');
+it('can replace @ signs into with random lowercase letters with other strings without spaces', function (string $expression, string $sign) {
+    $sequence = 'test'.str_repeat($sign, 100).'test';
+    expect(🙃()->sequence->hexifyLowercase($sequence))
+        ->toMatch("/^test{$expression}test\$/");
+})->with('hexifyLowercase');

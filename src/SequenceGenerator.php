@@ -56,22 +56,6 @@ class SequenceGenerator extends Generator
     }
 
     /**
-     * Replaces every
-     * '#' sign with a with-zero random digit,
-     * '%' sign with a non-zero random digit.
-     *
-     * @param  string  $sequence
-     *
-     * @return string
-     */
-    public function numerify(string $sequence): string
-    {
-        return (string) Pipe::new($sequence)
-            (fn($sequence) => $this->digitify($sequence))
-            (fn($sequence) => $this->digitifyNonZero($sequence));
-    }
-
-    /**
      * Replaces every '!' sign with an uppercase letter.
      *
      * @param  string      $sequence

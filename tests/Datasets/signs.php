@@ -79,7 +79,7 @@ const WITH_ZERO_DIGIT_OR_LETTER_SIGN = [
 ];
 
 dataset('numerifyNonZero', [
-    ...NON_ZERO_DIGIT_SIGN
+    ...NON_ZERO_DIGIT_SIGN,
 ]);
 
 dataset('numerify', [

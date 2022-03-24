@@ -82,7 +82,7 @@ dataset('numerifyNonZero', [
     ...NON_ZERO_DIGIT_SIGN
 ]);
 
-dataset('digitify', [
+dataset('numerify', [
     ...WITH_ZERO_DIGIT_SIGN,
 ]);
 

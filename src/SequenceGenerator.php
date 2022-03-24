@@ -46,7 +46,7 @@ class SequenceGenerator extends Generator
      *
      * @return string
      */
-    public function digitify(string $sequence): string
+    public function numerify(string $sequence): string
     {
         return preg_replace_callback(
             pattern: '/\\' . self::WITH_ZERO_DIGIT_SIGN . '/',

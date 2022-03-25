@@ -222,6 +222,16 @@ class SequenceGenerator extends Generator
             (fn($sequence) => $this->numerify($sequence));
     }
 
+    /**
+     * Replaces every occurence of $signToReplace with random $sign1 or $sign2
+     *
+     * @param  string  $signToReplace
+     * @param  string  $sign1
+     * @param  string  $sign2
+     * @param  string  $sequence
+     *
+     * @return string
+     */
     private function replaceWithRandomSign(string $signToReplace, string $sign1, string $sign2, string $sequence): string
     {
         return preg_replace_callback(

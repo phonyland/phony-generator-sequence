@@ -59,7 +59,7 @@ class SequenceGenerator extends Generator
      * Replaces every '!' sign with an uppercase letter.
      *
      * @param  string      $sequence
-     * @param  array|null  $letters
+     * @param  array<string>|null  $letters
      *
      * @return string
      */
@@ -83,7 +83,7 @@ class SequenceGenerator extends Generator
      * Replaces every '@' sign with a lowercase letter.
      *
      * @param  string      $sequence
-     * @param  array|null  $letters
+     * @param  array<string>|null  $letters
      *
      * @return string
      */
@@ -110,8 +110,8 @@ class SequenceGenerator extends Generator
      * '!' sign with an uppercase letter.
      *
      * @param  string      $sequence
-     * @param  array|null  $lettersUppercase
-     * @param  array|null  $lettersLowercase
+     * @param  array<string>|null  $lettersUppercase
+     * @param  array<string>|null  $lettersLowercase
      *
      * @return string
      */
@@ -198,8 +198,8 @@ class SequenceGenerator extends Generator
      * '%' sign with a non-zero random digit.
      *
      * @param  string      $sequence
-     * @param  array|null  $lettersUppercase
-     * @param  array|null  $lettersLowercase
+     * @param  array<string>|null  $lettersUppercase
+     * @param  array<string>|null  $lettersLowercase
      *
      * @return string
      */

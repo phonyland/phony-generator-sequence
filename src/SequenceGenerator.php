@@ -104,7 +104,7 @@ class SequenceGenerator extends Generator
     }
 
     /**
-     * Replaces every
+     * Replaces every:
      * '?' with a letter,
      * '@' sign with a lowercase letter,
      * '!' sign with an uppercase letter.
@@ -159,7 +159,7 @@ class SequenceGenerator extends Generator
     }
 
     /**
-     * Replaces every
+     * Replaces every:
      * '^' sign with an uppercase hex letter,
      * '_' sign with a lowercase hex letter,
      * '.' with an uppercase or lowercase hex letter.
@@ -177,11 +177,10 @@ class SequenceGenerator extends Generator
     }
 
     /**
-     * Replaces every
-     *
+     * Replaces every:
      * '*' sign with a with-zero random digit or a letter,
      * '$' sign with a with-zero random digit or a lowercase letter,
-     * '+' sign with a with-zero random digit or an uppercase letter,
+     * '+' sign with a with-zero random digit or an uppercase letter,.
      *
      * '&' sign with a non-zero random digit or a letter,
      * ')' sign with a non-zero random digit or a lowercase letter,
@@ -223,7 +222,7 @@ class SequenceGenerator extends Generator
     }
 
     /**
-     * Replaces every occurence of $signToReplace with random $sign1 or $sign2
+     * Replaces every occurence of $signToReplace with random $sign1 or $sign2.
      *
      * @param  string  $signToReplace
      * @param  string  $sign1

@@ -7,13 +7,13 @@ it('can replace ^ signs, _ signs and . signs into uppercase, lowercase and upper
 })->with('hexify');
 
 it('can replace ^ signs, _ signs and . signs into uppercase, lowercase and uppercase or lowercase letters with other strings', function (string $expression, string $sign) {
-    $sequence = 'test '.str_repeat($sign, 100).' test';
+    $sequence = 'test ' . str_repeat($sign, 100) . ' test';
     expect(🙃()->sequence->hexify($sequence))
         ->toMatch("/^test $expression test\$/");
 })->with('hexify');
 
 it('can replace ^ signs, _ signs and . signs into uppercase, lowercase and uppercase or lowercase letters with other strings without spaces', function (string $expression, string $sign) {
-    $sequence = 'test'.str_repeat($sign, 100).'test';
+    $sequence = 'test' . str_repeat($sign, 100) . 'test';
     expect(🙃()->sequence->hexify($sequence))
         ->toMatch("/^test{$expression}test\$/");
 })->with('hexify');

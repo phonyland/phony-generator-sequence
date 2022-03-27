@@ -78,55 +78,43 @@ const WITH_ZERO_DIGIT_OR_LETTER_SIGN = [
     ],
 ];
 
-dataset('numerifyNonZero', [
-    ...NON_ZERO_DIGIT_SIGN,
-]);
+dataset('numerifyNonZero', NON_ZERO_DIGIT_SIGN);
 
-dataset('numerify', [
-    ...WITH_ZERO_DIGIT_SIGN,
-]);
+dataset('numerify', WITH_ZERO_DIGIT_SIGN);
 
-dataset('letterifyUppercase', [
-    ...ASCII_LETTER_UPPERCASE_SIGN,
-]);
+dataset('letterifyUppercase', ASCII_LETTER_UPPERCASE_SIGN);
 
-dataset('letterifyLowercase', [
-    ...ASCII_LETTER_LOWERCASE_SIGN,
-]);
+dataset('letterifyLowercase', ASCII_LETTER_LOWERCASE_SIGN);
 
-dataset('letterify', [
-    ...ASCII_LETTER_UPPERCASE_SIGN,
-    ...ASCII_LETTER_LOWERCASE_SIGN,
-    ...ASCII_LETTER_SIGN,
-]);
+dataset('letterify', array_merge(
+    ASCII_LETTER_UPPERCASE_SIGN,
+    ASCII_LETTER_LOWERCASE_SIGN,
+    ASCII_LETTER_SIGN,
+));
 
-dataset('hexifyUppercase', [
-    ...HEX_LETTER_UPPERCASE_SIGN,
-]);
+dataset('hexifyUppercase', HEX_LETTER_UPPERCASE_SIGN);
 
-dataset('hexifyLowercase', [
-    ...HEX_LETTER_LOWERCASE_SIGN,
-]);
+dataset('hexifyLowercase', HEX_LETTER_LOWERCASE_SIGN);
 
-dataset('hexify', [
-    ...HEX_LETTER_LOWERCASE_SIGN,
-    ...HEX_LETTER_UPPERCASE_SIGN,
-    ...HEX_LETTER_SIGN,
-]);
+dataset('hexify', array_merge(
+    HEX_LETTER_LOWERCASE_SIGN,
+    HEX_LETTER_UPPERCASE_SIGN,
+    HEX_LETTER_SIGN,
+));
 
-dataset('alphanumerify', [
-    ...NON_ZERO_DIGIT_SIGN,
-    ...WITH_ZERO_DIGIT_SIGN,
-    ...ASCII_LETTER_UPPERCASE_SIGN,
-    ...ASCII_LETTER_LOWERCASE_SIGN,
-    ...ASCII_LETTER_SIGN,
-    ...HEX_LETTER_UPPERCASE_SIGN,
-    ...HEX_LETTER_LOWERCASE_SIGN,
-    ...HEX_LETTER_SIGN,
-    ...NON_ZERO_DIGIT_OR_UPPERCASE_LETTER_SIGN,
-    ...NON_ZERO_DIGIT_OR_LOWERCASE_LETTER_SIGN,
-    ...NON_ZERO_DIGIT_OR_LETTER_SIGN,
-    ...WITH_ZERO_DIGIT_OR_UPPERCASE_LETTER_SIGN,
-    ...WITH_ZERO_DIGIT_OR_LOWERCASE_LETTER_SIGN,
-    ...WITH_ZERO_DIGIT_OR_LETTER_SIGN,
-]);
+dataset('alphanumerify', array_merge(
+    NON_ZERO_DIGIT_SIGN,
+    WITH_ZERO_DIGIT_SIGN,
+    ASCII_LETTER_UPPERCASE_SIGN,
+    ASCII_LETTER_LOWERCASE_SIGN,
+    ASCII_LETTER_SIGN,
+    HEX_LETTER_UPPERCASE_SIGN,
+    HEX_LETTER_LOWERCASE_SIGN,
+    HEX_LETTER_SIGN,
+    NON_ZERO_DIGIT_OR_UPPERCASE_LETTER_SIGN,
+    NON_ZERO_DIGIT_OR_LOWERCASE_LETTER_SIGN,
+    NON_ZERO_DIGIT_OR_LETTER_SIGN,
+    WITH_ZERO_DIGIT_OR_UPPERCASE_LETTER_SIGN,
+    WITH_ZERO_DIGIT_OR_LOWERCASE_LETTER_SIGN,
+    WITH_ZERO_DIGIT_OR_LETTER_SIGN,
+));

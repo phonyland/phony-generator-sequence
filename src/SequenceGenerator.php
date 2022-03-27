@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Phonyland\SequenceGenerator;
 
 use Phonyland\Framework\Generator;
+use Phonyland\Framework\Pipe;
 
 class SequenceGenerator extends Generator
 {
@@ -120,7 +121,7 @@ class SequenceGenerator extends Generator
         ?array $lettersUppercase = null,
         ?array $lettersLowercase = null
     ): string {
-        return (string) Pipe::new($sequence)
+        return (string) Pipe::from($sequence)
             (fn($sequence) => $this->replaceWithRandomSign(self::ASCII_LETTER_SIGN, self::ASCII_LETTER_UPPERCASE_SIGN, self::ASCII_LETTER_LOWERCASE_SIGN, $sequence))
             (fn($sequence) => $this->letterifyUppercase($sequence, $lettersUppercase))
             (fn($sequence) => $this->letterifyLowercase($sequence, $lettersLowercase));
@@ -170,7 +171,7 @@ class SequenceGenerator extends Generator
      */
     public function hexify(string $sequence): string
     {
-        return (string) Pipe::new($sequence)
+        return (string) Pipe::from($sequence)
             (fn($sequence) => $this->replaceWithRandomSign(self::HEX_LETTER_SIGN, self::HEX_LETTER_UPPERCASE_SIGN, self::HEX_LETTER_LOWERCASE_SIGN, $sequence))
             (fn($sequence) => $this->hexifyUppercase($sequence))
             (fn($sequence) => $this->hexifyLowercase($sequence));
@@ -208,7 +209,7 @@ class SequenceGenerator extends Generator
         ?array $lettersUppercase = null,
         ?array $lettersLowercase = null
     ): string {
-        return (string) Pipe::new($sequence)
+        return (string) Pipe::from($sequence)
             (fn($sequence) => $this->replaceWithRandomSign(self::WITH_ZERO_DIGIT_OR_LETTER_SIGN, self::WITH_ZERO_DIGIT_SIGN, self::ASCII_LETTER_SIGN, $sequence))
             (fn($sequence) => $this->replaceWithRandomSign(self::WITH_ZERO_DIGIT_OR_LOWERCASE_LETTER_SIGN, self::WITH_ZERO_DIGIT_SIGN, self::ASCII_LETTER_LOWERCASE_SIGN, $sequence))
             (fn($sequence) => $this->replaceWithRandomSign(self::WITH_ZERO_DIGIT_OR_UPPERCASE_LETTER_SIGN, self::WITH_ZERO_DIGIT_SIGN, self::ASCII_LETTER_UPPERCASE_SIGN, $sequence))

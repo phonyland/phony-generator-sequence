@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Phonyland\SequenceGenerator\SequenceGenerator;
 
 const NON_ZERO_DIGIT_SIGN = [

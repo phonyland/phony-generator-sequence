@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 it('can replace @ signs into with random lowercase letters', function (string $expression, string $sign) {
     $sequence = str_repeat($sign, 100);
     expect(🙃()->sequence->hexifyLowercase($sequence))

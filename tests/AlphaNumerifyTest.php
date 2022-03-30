@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 it('can alpha numerify sequence characters', function (string $expression, string $sign) {
     expect(🙃()->sequence->alphanumerify(str_repeat($sign, 100)))
         ->toMatch("/^$expression\$/");
